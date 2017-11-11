@@ -37,5 +37,3 @@ Parameter validation is not done on the script, but rather on the route config.
 
 * logout_user() - Method to remove a user's session and sign them out.
 * @login_required - Decorator to mark a view as requiring a user to be logged in before they can access the view.
-
-# Broadcasting
