@@ -59,3 +59,11 @@ Referring back to the User and Tweet models, note that there is a ForeignKeyFiel
 * **abort()** - Function to be imported from Flask to immediately end a request with a specified status code. If no route or template is set, a generic 404 will appear
 * **errorhandler()** - Decorator that marks a function as handling a certain status code.
 * **return render_template('template.html'), 404** - The 404 on the end specifies the status code for the response.
+
+# Todos
+
+* Allow users to upload an avatar
+* Allow users to delete their accounts
+* Add method for blocking users
+* Add method for notifying when they are mentioned
+* Add groups and subscription to group's posts
