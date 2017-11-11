@@ -37,3 +37,18 @@ Parameter validation is not done on the script, but rather on the route config.
 
 * logout_user() - Method to remove a user's session and sign them out.
 * @login_required - Decorator to mark a view as requiring a user to be logged in before they can access the view.
+
+#Foreign Keys iin PeeWee
+Foreign keys are created using a special field class ```ForeignKeyField```. Each foreign key also creates a back-reference on the related model using the specified related_name.
+
+**Note**
+
+In SQLite, foreign keys are not enabled by default. Most things, including the Peewee foreign-key API, will work fine, but ON DELETE behaviour will be ignored, even if you explicitly specify on\_delete to your ForeignKeyField. In conjunction with the default PrimaryKeyField behaviour (where deleted record IDs can be reused), this can lead to surprising (and almost certainly unwanted) behaviour where if you delete a record in table A referenced by a foreign key in table B, and then create a new, unrelated, record in table A, the new record will end up mis-attached to the undeleted record in table B. To avoid the mis-attachment, you can use ```PrimaryKeyAutoIncrementField```, but it may be better overall to ensure that foreign keys are enabled with _pragmas=((‘foreign_keys’, ‘on’),)_ when you instantiate SqliteDatabase.
+
+##Traversing foreign keys
+Referring back to the User and Tweet models, note that there is a ForeignKeyField from Tweet to User. The foreign key can be traversed, allowing you access to the associated user instance:
+
+```
+>>> tweet.user.username
+'charlie'
+```
